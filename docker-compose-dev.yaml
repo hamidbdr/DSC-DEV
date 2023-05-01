@@ -26,8 +26,6 @@ services:
       - POSTGRES_USER=dev_user
       - POSTGRES_PASSWORD=dev_password
       - POSTGRES_DB=dev_db
-
-  
       
   client:
     build:
@@ -38,7 +36,7 @@ services:
       - '5000:5000'
     volumes:
       - ./frontend:/app
-      - /app/node_modules
+      - ./frontend:/app/node_modules
 
 volumes:
   postgres_data:          
