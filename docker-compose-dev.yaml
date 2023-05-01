@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+
+  api:
+    build:
+      context: backend
+      dockerfile: Dockerfile.dev    
+    container_name: api_backend
+    ports:
+      - '81:80'
+    volumes:
+      - ./backend:/app
+
+    environment:
+      - DATABASE_URL=postgresql://dev_user:dev_password@postgresdbserver:5432/dev_db"
+    depends_on:
+      - postgresdbserver
+
+  postgresdbserver:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=dev_user
+      - POSTGRES_PASSWORD=dev_password
+      - POSTGRES_DB=dev_db
+
+  
+      
+  client:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.dev
+    container_name: client_frontend
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:          

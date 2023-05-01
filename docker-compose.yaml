@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  client:
+    build: ./frontend
+    container_name: client_frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client:/app
+      - ./app/node_modules
+
+  api:
+    build: ./backend
+    container_name: api_backend
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./api:/app
+      - ./app/node_modules
