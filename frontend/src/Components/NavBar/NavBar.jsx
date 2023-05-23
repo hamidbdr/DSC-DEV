@@ -1,14 +1,17 @@
+import LoginRegistation from '../LoginRegitrationPage/LoginRegistrationPage.jsx';
 import Login  from './../Login/Login.jsx';
 import Logout from './../Logout/Logout.jsx';
+import { useState } from 'react';
 
 function NavBar() {
-    const logued = true
-
+    const [loguedState, setLogedState] = useState(false);
+    const notregistred = true;
     return ( 
         <>
         <div>
-            this the Nav Bar Element
-            {logued ? <Login/> :  <Logout/>}
+            This is the Nav Bar Element
+            {loguedState ? <Logout/> :  <Login/>}
+            {notregistred && <LoginRegistation/>}
         </div>
         </>
      );
