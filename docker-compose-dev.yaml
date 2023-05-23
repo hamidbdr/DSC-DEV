@@ -52,7 +52,7 @@ services:
       context: backend
       dockerfile: Dockerfile.dev    
     container_name: celery_worker_container
-    command: celery -A worker.Celery_app worker --loglevel=info 
+    command: celery -A worker_tasks.Celery_app worker --loglevel=info 
     volumes:
       - ./backend/celery_worker:/app
     env_file:
